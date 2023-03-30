@@ -1,0 +1,10 @@
+const express = require('express')
+const router = express.Router()
+const ticketController = require('../controllers/ticketController')
+const verifyJWT = require('../middleware/verifyJWT')
+router.route('/')
+    .get(ticketController.getAllTickets)
+    .post(verifyJWT, ticketController.createNewTicket)
+    // .patch(verifyJWT, ticketController.updatePremiereSlot)
+    .delete(verifyJWT, ticketController.deleteTicket)
+module.exports = router
